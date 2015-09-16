@@ -6,11 +6,59 @@ moment.locale('id');
 var hashids = new Hashids("m4c3tsur4b4y4");
 
 export default Ember.Route.extend({
+  geolocation: Ember.inject.service(),
+  userLocation: null,
   actions: {
     willTransition: function () {//before leave this route
-      //this.controller.set('lastminutes', 30);
       this.controller.set('displayMap', false);
       this.controller.set('originPlaceholder', 'Origin');
+      return true;
+    },
+    didTransition: function () {//before enter this route
+      //for displaying lastminutes on page header
+      var lastminutesText = '';
+      switch (this.controller.get('lastminutes')) {
+        case 30:
+          lastminutesText = '30 Minutes Ago';
+          break;
+        case 60:
+          lastminutesText = '1 Hour Ago';
+          break;
+        case 180:
+          lastminutesText = '3 Hours Ago';
+          break;
+        case 360:
+          lastminutesText = '6 Hours Ago';
+          break;
+        case 760:
+          lastminutesText = '12 Hours Ago';
+          break;
+        case 1440:
+          lastminutesText = '1 day Ago';
+          break;
+        case 10080:
+          lastminutesText = '1 week Ago';
+          break;
+        default:
+          lastminutesText = '30 Minutes Ago';
+          break;
+      }
+
+      this.controller.set('lastminutesText', lastminutesText);
+
+      //to get user current location
+      var that = this;
+      this.get('geolocation').getLocation().then(function () {
+        var currentLocation = that.get('geolocation').get('currentLocation');
+        that.set('userLocation', currentLocation);
+
+        // if user share her location, relocate lat and lng, otherwise it will use defaul
+        // value which is suarasurabaya office
+        that.controller.set('lat', currentLocation[0]);
+        that.controller.set('lng', currentLocation[1]);
+        that.controller.set('originPlaceholder', 'Origin (blank mean your location)!');
+        that.controller.set('origin', currentLocation);
+      });
       return true;
     }
   },

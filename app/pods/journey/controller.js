@@ -11,22 +11,9 @@ export default Ember.Controller.extend({
   geolocation: Ember.inject.service(),
   userLocation: null,
   originPlaceholder: 'Origin',
-  init: function () {
-    var that = this;
-    this.get('geolocation').getLocation().then(function () {
-      var currentLocation = that.get('geolocation').get('currentLocation');
-      that.set('userLocation', currentLocation);
-
-      // if user share her location, relocate lat and lng, otherwise it will use defaul
-      // value which is suarasurabaya office
-      that.set('lat', currentLocation[0]);
-      that.set('lng', currentLocation[1]);
-      that.set('originPlaceholder', 'Origin (blank mean your location)');
-      that.set('origin', currentLocation);
-    });
-  },
   queryParams: ['lastminutes'],
   lastminutes: 30,
+  lastminutesText: '',
   lat: -7.290293,
   lng: 112.727226,
   origin: [-7.290293, 112.727226],
