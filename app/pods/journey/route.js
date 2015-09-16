@@ -19,28 +19,28 @@ export default Ember.Route.extend({
       var lastminutesText = '';
       switch (this.controller.get('lastminutes')) {
         case 30:
-          lastminutesText = '30 Minutes Ago';
+          lastminutesText = '(30 Minutes)';
           break;
         case 60:
-          lastminutesText = '1 Hour Ago';
+          lastminutesText = '(1 Hour)';
           break;
         case 180:
-          lastminutesText = '3 Hours Ago';
+          lastminutesText = '(3 Hours)';
           break;
         case 360:
-          lastminutesText = '6 Hours Ago';
+          lastminutesText = '(6 Hours)';
           break;
-        case 760:
-          lastminutesText = '12 Hours Ago';
+        case 720:
+          lastminutesText = '(12 Hours)';
           break;
         case 1440:
-          lastminutesText = '1 day Ago';
+          lastminutesText = '(1 day)';
           break;
         case 10080:
-          lastminutesText = '1 week Ago';
+          lastminutesText = '(1 week)';
           break;
         default:
-          lastminutesText = '30 Minutes Ago';
+          lastminutesText = '(30 Minutes)';
           break;
       }
 
