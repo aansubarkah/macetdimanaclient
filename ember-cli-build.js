@@ -6,15 +6,15 @@ module.exports = function (defaults) {
     // Add options here
     // Add options here
     minifyCSS: {
-     enabled: true
-     },
-     minifyJS: {
-     enabled: true
-     },
-     sourcemaps: {
-     enabled: false,
-     extensions: ['js']
-     }
+      enabled: true
+    },
+    minifyJS: {
+      enabled: true
+    },
+    sourcemaps: {
+      enabled: false,
+      extensions: ['js']
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
