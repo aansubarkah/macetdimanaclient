@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   geolocation: Ember.inject.service(),
   userLocation: null,
-  lastminutesText: '',
   init: function () {
     var that = this;
     this.get('geolocation').getLocation().then(function () {

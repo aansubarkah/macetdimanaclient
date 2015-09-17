@@ -13,7 +13,6 @@ export default Ember.Controller.extend({
   originPlaceholder: 'Origin',
   queryParams: ['lastminutes'],
   lastminutes: 30,
-  lastminutesText: '',
   lat: -7.290293,
   lng: 112.727226,
   origin: [-7.290293, 112.727226],

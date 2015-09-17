@@ -15,37 +15,6 @@ export default Ember.Route.extend({
       return true;
     },
     didTransition: function () {//before enter this route
-      //for displaying lastminutes on page header
-      var lastminutesText = '';
-      switch (this.controller.get('lastminutes')) {
-        case 30:
-          lastminutesText = '(30 Mins)';
-          break;
-        case 60:
-          lastminutesText = '(1 Hr)';
-          break;
-        case 180:
-          lastminutesText = '(3 Hrs)';
-          break;
-        case 360:
-          lastminutesText = '(6 Hrs)';
-          break;
-        case 720:
-          lastminutesText = '(12 Hrs)';
-          break;
-        case 1440:
-          lastminutesText = '(1 D)';
-          break;
-        case 10080:
-          lastminutesText = '(1 W)';
-          break;
-        default:
-          lastminutesText = '(30 M)';
-          break;
-      }
-
-      this.controller.set('lastminutesText', lastminutesText);
-
       //to get user current location
       var that = this;
       this.get('geolocation').getLocation().then(function () {
@@ -56,7 +25,7 @@ export default Ember.Route.extend({
         // value which is suarasurabaya office
         that.controller.set('lat', currentLocation[0]);
         that.controller.set('lng', currentLocation[1]);
-        that.controller.set('originPlaceholder', 'Origin (blank mean your location)!');
+        that.controller.set('originPlaceholder', 'Origin (blank mean your location)');
         that.controller.set('origin', currentLocation);
       });
       return true;
@@ -102,16 +71,21 @@ export default Ember.Route.extend({
         "<p>(" + moment(item.get('created')).format('dddd, Do MMMM YYYY, h:mm:ss A') + ")</p>";
       var placeName = '';
 
-      if (item.get('isTwitExist') == 1) {
+      if (item.get('isTwitExist')) {
         placeName = "<p><strong>Tempat:&nbsp;</strong>" + item.get('twitPlaceName') + "</p>";
       }
-      if (item.get('isPlaceNameExist') == 1) {
+      if (item.get('isPlaceNameExist')) {
         placeName = "<p><strong>Tempat:&nbsp;</strong>" + item.get('place_name') + "</p>";
       }
 
       content = content + placeName;
       content = content + "<p><strong>Keterangan:&nbsp;</strong>" + item.get('info') + "</p>" +
         "<p><strong>Cuaca:&nbsp</strong>" + item.get('weather_name') + "</p>";
+
+      if (item.get('isTwitImageExist')) {
+        content = content + "<p align='center'><a href='" + item.get('twitImage') + "' target='_blank'>" +
+          "<img src='" + item.get('twitImage') + "' alt='image' height='150' width='150'></a></p>";
+      }
 
       var result = {
         id: hashids.encode(item.get('id')),
