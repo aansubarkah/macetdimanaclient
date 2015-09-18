@@ -26,7 +26,7 @@ export default DS.Model.extend({
   info: DS.attr('string'),
   twitUserID:DS.attr('number'),
   twitID:DS.attr('number'),
-  twitCreated: DS.attr('string'),
+  twitTime: DS.attr('string'),
   twitPlaceID: DS.attr('string'),
   twitPlaceName: DS.attr('string'),
   isTwitPlacePrecise: DS.attr('boolean', {defaultValue: 0}),

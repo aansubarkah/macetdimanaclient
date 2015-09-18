@@ -39,8 +39,13 @@ export default Ember.Route.extend({
         isCleared = "Ya";
       }
 
-      var content = "<p><strong>Waktu:&nbsp;</strong>" + moment(item.get('created')).fromNow() + "</p>" +
-        "<p>(" + moment(item.get('created')).format('dddd, Do MMMM YYYY, h:mm:ss A') + ")</p>";
+      var itemTime = item.get('created');
+      if (item.get('twitTime') !== null) {
+        itemTime = item.get('twitTime');
+      }
+
+      var content = "<p><strong>Waktu:&nbsp;</strong>" + moment(itemTime).fromNow() + "</p>" +
+        "<p>(" + moment(itemTime).format('dddd, Do MMMM YYYY, h:mm:ss A') + ")</p>";
       var placeName = '';
 
       if (item.get('isTwitExist')) {
