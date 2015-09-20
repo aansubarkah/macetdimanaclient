@@ -21,6 +21,8 @@ Router.map(function() {
   this.route('markerviews');
   this.route('loading');
   this.route('contribute');
+  this.route('examples');
+  this.route('example');
 });
 
 export default Router;
