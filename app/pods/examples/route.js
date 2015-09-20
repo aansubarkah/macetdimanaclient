@@ -6,16 +6,10 @@ moment.locale('id');
 var hashids = new Hashids("m4c3tsur4b4y4");
 
 export default Ember.Route.extend({
-  model: function (params) {
+  model: function () {
     var query = {};
 
-    if (Ember.isPresent(params.lastminutes)) {
-      query.lastminutes = params.lastminutes;
-    }
-
     return this.store.query('example', query);
-    //return this.store.query('example');
-
   },
   setupController: function (controller, model) {
     this._super.apply(this, arguments);
