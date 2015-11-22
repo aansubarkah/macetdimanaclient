@@ -7,5 +7,11 @@ export default Ember.Controller.extend({
   newLng: 0,
   zoom: 10,
   isShowingModal: false,
-  triggerSuggestions: 1
+  triggerSuggestions: 1,
+  actions: {
+    refreshPlace(lat, lng){
+      this.set('lat', lat);
+      this.set('lng', lng);
+    }
+  }
 });
