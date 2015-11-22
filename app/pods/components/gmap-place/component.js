@@ -25,8 +25,8 @@ export default Ember.Component.extend({
         return;
       }
 
-      var lat = place.geometry.location.G;
-      var lng = place.geometry.location.K;
+      var lat = place.geometry.location.lat();
+      var lng = place.geometry.location.lng();
 
       that.sendAction('placeCoordinate', lat, lng);
     });
