@@ -10,7 +10,7 @@ export default DS.RESTAdapter.extend({
   shouldBackgroundReloadRecord: function () {
     return false;
   },
-  host: 'http://api.dimanamacet.com',// @todo change this on development server
+  host: 'http://api.macetdimana.com',// @todo change this on development server
   //host: 'http://localhost:8765',// @todo change this on production server
   ajax: function (url, method, hash) {
     hash = hash || {};
