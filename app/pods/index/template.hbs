@@ -18,9 +18,17 @@
         {{g-maps name="marker-map" lat=lat lng=lng zoom=zoom markers=markersForDisplay}}
     </div>
     <div class="box-footer clearfix">
-        <div class="box-tools">
-            <div class="col-md-4 pull-right">
-                <div class="form-group pull-right">
+        <div class="col-md-3 pull-left">
+            <a href="https://twitter.com/dimanamacetid" target="_blank">
+                <img src="images/twitter.png" alt="@dimanamacetid" height="20.58" width="25.31">
+            </a>
+            <a href="https://facebook.com/dimanamacetid" target="_blank">
+                <img src="images/fb.jpg" alt="dimanamacetid" height="25" width="25">
+            </a>
+        </div>
+        <div class="col-md-5 pull-right">
+            <div class="box-tools">
+                <div class="form-group">
                     {{#gmap-search refreshPlace='refreshPlace' elementId='searchPlaceText'}}{{/gmap-search}}
                 </div>
             </div>
