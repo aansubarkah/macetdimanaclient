@@ -18,8 +18,10 @@ export default Ember.Controller.extend({
     },
     queryParams: ['lastminutes'],
     lastminutes: 180,
-    lat: -7.290293,
-    lng: 112.727226,
+    //lat: -7.290293,
+    //lng: 112.727226,-6.175104, 106.827185
+    lat: -6.175104,
+    lng: 106.827185,
     newLat: 0,
     newLng: 0,
     zoom: 14,

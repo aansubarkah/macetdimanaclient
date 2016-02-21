@@ -47,6 +47,7 @@ export default Ember.Route.extend({
       var content = "<p><strong>Waktu:&nbsp;</strong>" + moment(itemTime).fromNow() + "</p>" +
         "<p>(" + moment(itemTime).format('dddd, Do MMMM YYYY, h:mm:ss A') + ")</p>";
       var placeName = '';
+      var info = '';
 
       if (item.get('isTwitExist')) {
         placeName = "<p><strong>Tempat:&nbsp;</strong>" + item.get('twitPlaceName') + "</p>";
@@ -54,9 +55,12 @@ export default Ember.Route.extend({
       if (item.get('isPlaceNameExist')) {
         placeName = "<p><strong>Tempat:&nbsp;</strong>" + item.get('place_name') + "</p>";
       }
+      if (item.get('info') !== '') {
+          info = "<p><strong>Keterangan:&nbsp;</strong>" + item.get('info') + "</p>";
+      }
 
       content = content + placeName;
-      content = content + "<p><strong>Keterangan:&nbsp;</strong>" + item.get('info') + "</p>" +
+      content = content + info +
         "<p><strong>Cuaca:&nbsp</strong>" + item.get('weather_name') + "</p>";
       if (item.get('isTwitImageExist')) {
         content = content + "<p align='center'><a href='" + item.get('twitImage') + "' target='_blank'>" +
