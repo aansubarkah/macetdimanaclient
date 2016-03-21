@@ -1,4 +1,5 @@
 import Ember from 'ember';
+var parser = new UAParser();
 
 export default Ember.Controller.extend({
     geolocation: Ember.inject.service(),
@@ -14,6 +15,43 @@ export default Ember.Controller.extend({
             // value which is suarasurabaya office
             that.set('lat', currentLocation[0]);
             that.set('lng', currentLocation[1]);
+
+            //@todo save to accesses table
+            var parserResult = parser.getResult();
+
+            var dataToSave = {
+                browser_id: 1,
+                browserName: parserResult.browser.name,
+                browserVersion: parserResult.browser.version,
+                cpu_id: 1,
+                cpuArchitecture: parserResult.cpu.architecture,
+                device_id: 1,
+                deviceModel: parserResult.device.model,
+                deviceType: parserResult.device.type,
+                deviceVendor: parserResult.device.vendor,
+                engine_id: 1,
+                engineName: parserResult.engine.name,
+                engineVersion: parserResult.engine.version,
+                system_id: 1,
+                systemName: parserResult.os.name,
+                systemVersion: parserResult.os.version,
+                ip: '',
+                created: '',
+                modified: '',
+                active: 1
+            };
+
+            const store = that.get('store');
+			var access = store.createRecord('access', dataToSave);
+            access.save();
+			//access.save().then(function () {
+				// @warn refresh template
+				//that.get('target.router').refresh();
+				//that.transitionToRoute('markers');
+			//});
+
+            //console.log(parserResult);
+            //console.log(dataToSave);
         });
     },
     queryParams: ['lastminutes'],

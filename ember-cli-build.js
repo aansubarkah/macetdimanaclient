@@ -45,5 +45,8 @@ module.exports = function (defaults) {
   // Hashids
   app.import('bower_components/hashids/lib/hashids.min.js');
 
+  // ua-parser-js
+  app.import('bower_components/ua-parser-js/dist/ua-parser.min.js');
+
   return app.toTree();
 };

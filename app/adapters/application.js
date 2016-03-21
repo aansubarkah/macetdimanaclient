@@ -11,7 +11,7 @@ export default DS.RESTAdapter.extend({
     return false;
   },
   host: 'https://api.dimanamacet.com',// @todo change this on development server
-  //host: 'http://localhost:8765',// @todo change this on production server
+  //host: 'http://localhost:9876',// @todo change this on production server
   ajax: function (url, method, hash) {
     hash = hash || {};
     hash.crossDomain = true;
