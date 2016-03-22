@@ -17,6 +17,8 @@ export default DS.Model.extend({
     systemName: DS.attr('string', {defaultValue: ''}),
     systemVersion: DS.attr('string', {defaultValue: ''}),
     ip: DS.attr('string', {defaultValue: ''}),
+    lat: DS.attr('number', {defaultValue: 0}),
+    lng: DS.attr('number', {defaultValue: 0}),
     created: DS.attr('string'),
     modified: DS.attr('string'),
     active: DS.attr('boolean', {defaultValue: 1})

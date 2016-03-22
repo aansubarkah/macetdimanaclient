@@ -18,6 +18,8 @@ export default Ember.Controller.extend({
 
             //@todo save to accesses table
             var parserResult = parser.getResult();
+            that.set('userLat', currentLocation[0]);
+            that.set('userLng', currentLocation[1]);
 
             var dataToSave = {
                 browser_id: 1,
@@ -36,6 +38,8 @@ export default Ember.Controller.extend({
                 systemName: parserResult.os.name,
                 systemVersion: parserResult.os.version,
                 ip: '',
+                lat: that.get('userLat'),
+                lng: that.get('userLng'),
                 created: '',
                 modified: '',
                 active: 1
@@ -58,6 +62,8 @@ export default Ember.Controller.extend({
     lastminutes: 180,
     //lat: -7.290293,
     //lng: 112.727226,-6.175104, 106.827185
+    userLat: 0,
+    userLng: 0,
     lat: -6.175104,
     lng: 106.827185,
     newLat: 0,
