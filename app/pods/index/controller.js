@@ -15,55 +15,37 @@ export default Ember.Controller.extend({
             // value which is suarasurabaya office
             that.set('lat', currentLocation[0]);
             that.set('lng', currentLocation[1]);
-
-            //@todo save to accesses table
-            var parserResult = parser.getResult();
-            that.set('userLat', currentLocation[0]);
-            that.set('userLng', currentLocation[1]);
-
-            var dataToSave = {
-                browser_id: 1,
-                browserName: parserResult.browser.name,
-                browserVersion: parserResult.browser.version,
-                cpu_id: 1,
-                cpuArchitecture: parserResult.cpu.architecture,
-                device_id: 1,
-                deviceModel: parserResult.device.model,
-                deviceType: parserResult.device.type,
-                deviceVendor: parserResult.device.vendor,
-                engine_id: 1,
-                engineName: parserResult.engine.name,
-                engineVersion: parserResult.engine.version,
-                system_id: 1,
-                systemName: parserResult.os.name,
-                systemVersion: parserResult.os.version,
-                ip: '',
-                lat: that.get('userLat'),
-                lng: that.get('userLng'),
-                created: '',
-                modified: '',
-                active: 1
-            };
-
-            const store = that.get('store');
-			var access = store.createRecord('access', dataToSave);
-            access.save();
-			//access.save().then(function () {
-				// @warn refresh template
-				//that.get('target.router').refresh();
-				//that.transitionToRoute('markers');
-			//});
-
-            //console.log(parserResult);
-            //console.log(dataToSave);
         });
+
+        var parserResult = parser.getResult();
+        var dataToSave = {
+            browser_id: 1,
+            browserName: parserResult.browser.name,
+            browserVersion: parserResult.browser.version,
+            cpu_id: 1,
+            cpuArchitecture: parserResult.cpu.architecture,
+            device_id: 1,
+            deviceModel: parserResult.device.model,
+            deviceType: parserResult.device.type,
+            deviceVendor: parserResult.device.vendor,
+            engine_id: 1,
+            engineName: parserResult.engine.name,
+            engineVersion: parserResult.engine.version,
+            system_id: 1,
+            systemName: parserResult.os.name,
+            systemVersion: parserResult.os.version,
+            ip: '',
+            created: '',
+            modified: '',
+            active: 1
+        };
+
+        const store = this.get('store');
+        var access = store.createRecord('access', dataToSave);
+        access.save();
     },
     queryParams: ['lastminutes'],
     lastminutes: 180,
-    //lat: -7.290293,
-    //lng: 112.727226,-6.175104, 106.827185
-    userLat: 0,
-    userLng: 0,
     lat: -6.175104,
     lng: 106.827185,
     newLat: 0,
