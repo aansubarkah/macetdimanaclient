@@ -23,6 +23,7 @@ Router.map(function() {
   this.route('contribute');
   this.route('examples');
   this.route('example');
+  this.route('quiz');
 });
 
 export default Router;

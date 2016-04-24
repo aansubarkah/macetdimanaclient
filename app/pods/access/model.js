@@ -14,6 +14,7 @@ export default DS.Model.extend({
     engineName: DS.attr('string', {defaultValue: ''}),
     engineVersion: DS.attr('string', {defaultValue: ''}),
     system_id: DS.attr('number', {defaultValue: 1}),
+    page_id: DS.attr('number', {defaultValue: 1}),
     systemName: DS.attr('string', {defaultValue: ''}),
     systemVersion: DS.attr('string', {defaultValue: ''}),
     ip: DS.attr('string', {defaultValue: ''}),

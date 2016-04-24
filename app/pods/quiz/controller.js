@@ -2,21 +2,7 @@ import Ember from 'ember';
 var parser = new UAParser();
 
 export default Ember.Controller.extend({
-    geolocation: Ember.inject.service(),
-    userLocation: null,
-    init: function () {
-        this.set('isShowingModal', true);
-        var that = this;
-        this.get('geolocation').getLocation().then(function () {
-            var currentLocation = that.get('geolocation').get('currentLocation');
-            that.set('userLocation', currentLocation);
-
-            // if user share her location, relocate lat and lng, otherwise it will use defaul
-            // value which is suarasurabaya office
-            that.set('lat', currentLocation[0]);
-            that.set('lng', currentLocation[1]);
-        });
-
+    init: function() {
         var parserResult = parser.getResult();
         var dataToSave = {
             browser_id: 1,
@@ -34,7 +20,7 @@ export default Ember.Controller.extend({
             system_id: 1,
             systemName: parserResult.os.name,
             systemVersion: parserResult.os.version,
-            page_id: 1,
+            page_id: 5,
             ip: '',
             created: '',
             modified: '',
@@ -44,23 +30,5 @@ export default Ember.Controller.extend({
         const store = this.get('store');
         var access = store.createRecord('access', dataToSave);
         access.save();
-    },
-    queryParams: ['lastminutes'],
-    lastminutes: 180,
-    lat: -6.175104,
-    lng: 106.827185,
-    newLat: 0,
-    newLng: 0,
-    zoom: 14,
-    isShowingModal: false,
-    triggerSuggestions: 1,
-    actions: {
-        toggleAddModal(){
-            this.toggleProperty('isShowingModal');
-        },
-        refreshPlace(lat, lng){
-            this.set('lat', lat);
-            this.set('lng', lng);
-        }
     }
 });
